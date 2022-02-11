@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: analyzer-2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: analyzer-2
+      env: prod
+  template:
+    metadata:
+      labels:
+        app: analyzer-2
+        env: prod
+    spec:
+      containers:
+        - name: analyzer-2
+          image: analyzer-2:latest
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: AMQP_URI
+              value: amqp://869170033633786:869170033633786@35.193.40.1:5672
+            - name: AMQP_EVENTS_EX_NAME
+              value: amq.topic
+            - name: AMQP_EVENTS_QUEUE
+              value: statistics
+            - name: AMQP_EVENTS_ROUTING
+              value: devices.*.events
+            - name: MONGO_URI
+              value: mongodb://root:qdXHu9WK1UT5CHCcpTT8@mongo-mongodb-0.mongo-mongodb-headless.default.svc.cluster.local:27017,mongo-mongodb-1.mongo-mongodb-headless.default.svc.cluster.local:27017/meditemp?authSource=admin
+            - name: MONGO_URI_TESTS
+              value: mongodb://mongo-mongodb.default.svc.cluster.local:27017/hardiot-test
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "200m"
+      imagePullSecrets:
+        - name: acr-secret

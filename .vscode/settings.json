@@ -1,0 +1,8 @@
+{
+  "jshint.options": {
+    "esversion": 9
+  },
+  "cSpell.words": ["prefetch", "RABBITMQ"],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
