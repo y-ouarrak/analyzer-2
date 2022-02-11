@@ -12,7 +12,7 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  GKE_CLUSTER: hardiot-kga # Add your cluster name here.
+  GKE_CLUSTER: kge-nextrack # Add your cluster name here.
   GKE_ZONE: us-central1-c # Add your cluster zone here.
   DEPLOYMENT_NAME: analyzer-2 # Add your deployment name here.
   IMAGE: analyzer-2
