@@ -14,7 +14,7 @@ const alertSchema = mongoose.Schema(
       required: true,
       ref: "Province",
     },
-    AlertedAt: {
+    alertedAt: {
       type: Date,
       required: true,
       default: new Date(),
