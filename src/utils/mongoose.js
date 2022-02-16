@@ -31,17 +31,15 @@ exports.connect = () => {
     })
     .then(async () => {
       console.log("mongoDB connected...");
-      const _devices = await Devices.find()
-        .populate("region", "name")
-        .populate("province", "name");
+      const _devices = await Devices.find();
       for (const _device of _devices) {
         devices.set(
           _device.serial,
           {
             name: _device.name,
             serial: _device.serial,
-            region: _device.region.name,
-            province: _device.province.name,
+            region: _device.region,
+            province: _device.province,
           },
           0
         );

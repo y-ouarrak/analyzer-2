@@ -29,7 +29,7 @@ spec:
             - name: AMQP_EVENTS_ROUTING
               value: devices.*.events
             - name: MONGO_URI
-              value: mongodb://root:qdXHu9WK1UT5CHCcpTT8@mongo-mongodb-0.mongo-mongodb-headless.default.svc.cluster.local:27017,mongo-mongodb-1.mongo-mongodb-headless.default.svc.cluster.local:27017/meditemp?authSource=admin
+              value: mongodb://root:qdXHu9WK1UT5CHCcpTT8@mongo-mongodb-0.mongo-mongodb-headless.default.svc.cluster.local:27017,mongo-mongodb-1.mongo-mongodb-headless.default.svc.cluster.local:27017/nextrack?authSource=admin
             - name: MONGO_URI_TESTS
               value: mongodb://mongo-mongodb.default.svc.cluster.local:27017/hardiot-test
           imagePullPolicy: Always

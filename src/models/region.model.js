@@ -1,9 +1,21 @@
 const mongoose = require("mongoose");
 
-const { Schema } = mongoose;
+const regionSchema = mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const RegionSchema = new Schema({
-  name: String,
-});
+/**
+ * @typedef Region
+ */
+const Region = mongoose.model("Region", regionSchema);
 
-module.exports = mongoose.model("regions", RegionSchema);
+module.exports = Region;

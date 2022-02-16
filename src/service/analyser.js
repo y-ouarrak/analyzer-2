@@ -41,7 +41,7 @@ analyzer
             });
             await data.save();
           } catch (err) {}
-          lastAlert.set(event.serial, new Date(), 60 * 20);
+          lastAlert.set(event.serial, new Date(), 60 * 35);
         } else {
           const tmp = new Date();
           if (
@@ -55,7 +55,7 @@ analyzer
                 date: tmp,
               }
             );
-            lastAlert.set(event.serial, new Date(), 60 * 20);
+            lastAlert.set(event.serial, new Date(), 60 * 35);
             let _device = {
               name: "",
               region: "",
@@ -67,17 +67,17 @@ analyzer
             }
             const alert = new Alert({
               serial: event.serial + "",
-              temp: parseFloat(event.temp),
-              date: tmp,
-              state: parseFloat(event.temp) > 8 ? "UP" : "DOWN",
+              value: parseFloat(event.temp),
+              alertedAt: tmp,
+              type: parseFloat(event.temp) > 8 ? "UP" : "DOWN",
               name: _device.name,
               region: _device.region,
               province: _device.province,
-              type: state[event.serial] || "-",
+              state: "620d45b4496402bb36623b31",
             });
             await alert.save();
           } else {
-            lastAlert.ttl(event.serial, 60 * 20);
+            lastAlert.ttl(event.serial, 60 * 35);
           }
         }
       }
