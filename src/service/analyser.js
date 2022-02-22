@@ -41,12 +41,12 @@ analyzer
             });
             await data.save();
           } catch (err) {}
-          lastAlert.set(event.serial, new Date(), 60 * 20);
+          lastAlert.set(event.serial, new Date(), 60 * 35);
         } else {
           const tmp = new Date();
           if (
             tmp.getTime() - lastAlert.get(event.serial).getTime() >
-            2000 * 60 * 20
+            1000 * 60 * 20
           ) {
             await deviceState.updateOne(
               { serial: event.serial },
@@ -55,11 +55,12 @@ analyzer
                 date: tmp,
               }
             );
-            lastAlert.set(event.serial, new Date(), 60 * 20);
+            lastAlert.set(event.serial, new Date(), 60 * 35);
             let _device = {
               name: "",
               region: "",
               province: "",
+              stockType: "-",
             };
             if (devices.has(event.serial)) {
               const _tmp = devices.get(event.serial);
@@ -67,17 +68,18 @@ analyzer
             }
             const alert = new Alert({
               serial: event.serial + "",
-              temp: parseFloat(event.temp),
-              date: tmp,
-              state: parseFloat(event.temp) > 8 ? "UP" : "DOWN",
+              value: parseFloat(event.temp),
+              alertedAt: tmp,
+              type: parseFloat(event.temp) > 8 ? "UP" : "DOWN",
               name: _device.name,
               region: _device.region,
               province: _device.province,
-              type: state[event.serial] || "-",
+              stockType: _device.stockType,
+              state: "620d45b4496402bb36623b31",
             });
             await alert.save();
           } else {
-            lastAlert.ttl(event.serial, 60 * 20);
+            lastAlert.ttl(event.serial, 60 * 35);
           }
         }
       }

@@ -8,11 +8,11 @@ name: Build and Deploy to GKE
 on:
   push:
     branches:
-      - tmp
+      - develop
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  GKE_CLUSTER: hardiot-kga # Add your cluster name here.
+  GKE_CLUSTER: kge-nextrack # Add your cluster name here.
   GKE_ZONE: us-central1-c # Add your cluster zone here.
   DEPLOYMENT_NAME: analyzer-2 # Add your deployment name here.
   IMAGE: analyzer-2
@@ -63,5 +63,5 @@ jobs:
         run: |-
           ./kustomize edit set image analyzer-2:latest=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
           ./kustomize build . | kubectl apply -f -
-          kubectl -n workers rollout status deployment/$DEPLOYMENT_NAME
-          kubectl -n workers get services -o wide
+          kubectl rollout status deployment/$DEPLOYMENT_NAME
+          kubectl get services -o wide

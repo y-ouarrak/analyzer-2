@@ -1,33 +1,50 @@
 const mongoose = require("mongoose");
 
-/**
- * alert Schema
- * @private
- */
-const alertSchema = new mongoose.Schema(
+const alerts = ["UP", "DOWN", "SENSOR", "UPDATE", "OFFLINE", "ERROR"];
+
+const alertSchema = mongoose.Schema(
   {
-    serial: {
-      type: String,
+    region: {
+      type: mongoose.SchemaTypes.ObjectId,
       required: true,
-      trim: true,
-      lowercase: true,
+      ref: "Region",
     },
-    temp: {
-      type: Number,
+    province: {
+      type: mongoose.SchemaTypes.ObjectId,
+      required: true,
+      ref: "Province",
     },
-    date: {
+    alertedAt: {
       type: Date,
       required: true,
       default: new Date(),
     },
-    state: {
+    stockType: {
       type: String,
+      index: true,
+    },
+    value: {
+      type: Number,
       required: true,
     },
-    type: String,
-    name: String,
-    region: String,
-    province: String,
+    type: {
+      type: String,
+      enum: alerts,
+      default: "ERROR",
+    },
+    name: {
+      type: String,
+      trim: true,
+    },
+    serial: {
+      type: String,
+      trim: true,
+      require: true,
+    },
+    state: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "State",
+    },
   },
   {
     timestamps: true,
@@ -35,6 +52,8 @@ const alertSchema = new mongoose.Schema(
 );
 
 /**
- * @typedef alert
+ * @typedef Alert
  */
-module.exports = mongoose.model("alert", alertSchema);
+const Alert = mongoose.model("Alert", alertSchema);
+
+module.exports = Alert;
