@@ -60,6 +60,7 @@ analyzer
               name: "",
               region: "",
               province: "",
+              stockType: "-",
             };
             if (devices.has(event.serial)) {
               const _tmp = devices.get(event.serial);
@@ -73,6 +74,7 @@ analyzer
               name: _device.name,
               region: _device.region,
               province: _device.province,
+              stockType: _device.stockType,
               state: "620d45b4496402bb36623b31",
             });
             await alert.save();

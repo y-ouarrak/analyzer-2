@@ -18,6 +18,10 @@ const deviceSchema = new mongoose.Schema({
   type: {
     type: Number,
   },
+  stockType: {
+    type: String,
+    index: true,
+  },
   province: {
     type: mongoose.ObjectId,
     ref: "regions",

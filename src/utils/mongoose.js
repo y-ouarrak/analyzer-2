@@ -40,6 +40,7 @@ exports.connect = () => {
             serial: _device.serial,
             region: _device.region,
             province: _device.province,
+            stockType: _device.stockType,
           },
           0
         );

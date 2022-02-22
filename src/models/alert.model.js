@@ -19,6 +19,10 @@ const alertSchema = mongoose.Schema(
       required: true,
       default: new Date(),
     },
+    stockType: {
+      type: String,
+      index: true,
+    },
     value: {
       type: Number,
       required: true,
