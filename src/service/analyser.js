@@ -46,7 +46,7 @@ analyzer
           const tmp = new Date();
           if (
             tmp.getTime() - lastAlert.get(event.serial).getTime() >
-            2000 * 60 * 20
+            1000 * 60 * 20
           ) {
             await deviceState.updateOne(
               { serial: event.serial },
