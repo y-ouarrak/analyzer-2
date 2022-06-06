@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "amqplib": "^0.8.0",
+    "amqplib": "^0.10.0",
     "dayjs": "^1.10.7",
     "dotenv-safe": "^8.2.0",
     "mongoose": "^6.2.1",
